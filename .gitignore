@@ -1,0 +1,5 @@
+# Hide application.properties files
+
+**/application.properties
+CoverArtStorage/
+TrackStorage/

@@ -1,0 +1,5 @@
+db.url=jmysql://${MYSQL_HOST:localhost}:3306/db_example
+db.user=database_user
+db.password=database_password
+storage.track=track_storage_path
+storage.cover=cover_storage_path
