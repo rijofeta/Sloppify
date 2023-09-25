@@ -23,9 +23,12 @@ public class SloppifyTrackController {
     }
 
     @GetMapping(path = "{id}/play")
-    public void playTrack(@PathVariable("id") String id) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public void playTrack(@PathVariable("id") String id) {
         sloppifyTrackService.play(id);
     }
 
-
+    @GetMapping(path = "*/pause")
+    public void pauseTrack() {
+        sloppifyTrackService.pause();
+    }
 }

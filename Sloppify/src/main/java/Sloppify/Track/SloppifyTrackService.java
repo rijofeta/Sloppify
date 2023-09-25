@@ -1,11 +1,9 @@
 package Sloppify.Track;
 
+import Sloppify.AudioPlayer.AudioPlayer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -13,8 +11,9 @@ import java.util.Optional;
 public class SloppifyTrackService {
 
     private final SloppifyTrackRepository sloppifyTrackRepository;
+    private final AudioPlayer audioPlayer;
 
-    public void play(String id) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public void play(String id) {
         Optional<SloppifyTrack> optionalSloppifyTrack = sloppifyTrackRepository.findById(id);
 
         if (optionalSloppifyTrack.isEmpty()) {
@@ -22,11 +21,11 @@ public class SloppifyTrackService {
         }
 
         SloppifyTrack sloppifyTrack = optionalSloppifyTrack.get();
-        File file = new File(sloppifyTrack.getFilePath());
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioInputStream);
-        clip.start();
+        audioPlayer.play(sloppifyTrack.getFilePath());
+    }
+
+    public void pause() {
+        audioPlayer.pause();
     }
 
     public String save(SloppifyTrack sloppifyTrack) {
