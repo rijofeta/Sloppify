@@ -1,6 +1,6 @@
 package Sloppify.Login;
 
-import Sloppify.Security.JwtTokenUtil;
+import Sloppify.Security.JwtService;
 import Sloppify.User.SloppifyUser;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtService jwtService;
 
     @PostMapping
     public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
@@ -27,7 +27,7 @@ public class LoginController {
 
         Authentication auth = authenticationManager.authenticate(authenticationToken);
 
-        String token = jwtTokenUtil.generateToken((SloppifyUser) auth.getPrincipal());
+        String token = jwtService.generateToken((SloppifyUser) auth.getPrincipal());
         return ResponseEntity.ok(new LoginResponse(token));
     }
 }
