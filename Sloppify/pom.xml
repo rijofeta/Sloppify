@@ -64,6 +64,16 @@
 			<artifactId>java-jwt</artifactId>
 			<version>4.4.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate.search</groupId>
+			<artifactId>hibernate-search-mapper-orm-orm6</artifactId>
+			<version>6.2.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.search</groupId>
+			<artifactId>hibernate-search-backend-lucene</artifactId>
+			<version>6.2.2.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>

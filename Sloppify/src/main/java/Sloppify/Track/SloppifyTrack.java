@@ -8,6 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import java.text.SimpleDateFormat;
 
@@ -16,6 +18,7 @@ import java.text.SimpleDateFormat;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Indexed
 public class SloppifyTrack {
 
     @Id
@@ -23,12 +26,15 @@ public class SloppifyTrack {
     private String id;
 
     @Column(name = "title", nullable = false)
+    @FullTextField
     private String title;
 
     @Column(name = "album", nullable = false)
+    @FullTextField
     private String album;
 
     @Column(name = "artist", nullable = false)
+    @FullTextField
     private String artist;
 
     @Column(name = "release_date", nullable = false)
@@ -56,13 +62,10 @@ public class SloppifyTrack {
 
     @Override
     public String toString() {
-        return "SloppifyTrack{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", album='" + album + '\'' +
-                ", artist='" + artist + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", coverArt='" + coverArt + '\'' +
-                '}';
+        return "id: " + id + '\n' +
+                "Title: " + title + '\n' +
+                "Album: " + album + '\n' +
+                "Artist: " + artist + '\n' +
+                "Release Date: " + releaseDate;
     }
 }

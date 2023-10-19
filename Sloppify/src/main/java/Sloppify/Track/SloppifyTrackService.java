@@ -4,6 +4,7 @@ import Sloppify.AudioPlayer.AudioPlayer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,6 +13,9 @@ public class SloppifyTrackService {
 
     private final SloppifyTrackRepository sloppifyTrackRepository;
     private final AudioPlayer audioPlayer;
+
+    private static final int SEARCH_LIMIT = 3;
+    private static final String[] SEARCH_FIELDS = new String[]{"title", "album", "artist"};
 
     public void play(String id) {
         Optional<SloppifyTrack> optionalSloppifyTrack = sloppifyTrackRepository.findById(id);
@@ -44,5 +48,9 @@ public class SloppifyTrackService {
         return sloppifyTrack.toString();
     }
 
+    public String search(String text) {
+        List<SloppifyTrack> tracksFound = sloppifyTrackRepository.searchBy(text, SEARCH_LIMIT, SEARCH_FIELDS);
+        return tracksFound.toString();
+    }
 }
 
