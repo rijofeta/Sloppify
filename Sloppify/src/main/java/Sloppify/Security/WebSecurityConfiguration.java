@@ -52,6 +52,7 @@ public class WebSecurityConfiguration {
         return new ProviderManager(authenticationProvider);
     }
 
+    /*
     @Bean
     public void createAdmin() {
          SloppifyUser admin = new SloppifyUser(
@@ -62,5 +63,6 @@ public class WebSecurityConfiguration {
 
          sloppifyUserService.signUpUser(admin);
     }
+    */
 
 }
